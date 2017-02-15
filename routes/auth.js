@@ -15,9 +15,15 @@ router.route('/').post(function(req, res, next) {
 	}else{
 		user.find(data,function(docs){
 		if(docs.length == 0){
-			res.send('用户名或密码错误');
+			res.send({
+				success:false,
+				message:"用户名或密码错误"
+			});
 		}else{
-			res.json(docs);
+			res.json({
+				success:true,
+				message:"登录成功"
+			});
 		}
 		},function(err){
 			throw err;
