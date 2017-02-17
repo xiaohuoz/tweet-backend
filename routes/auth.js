@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 var DB = require('../lib/Dao').DB;
 var user = DB('user');
+
 /* GET users listing. */
 router.route('/login.do').post(function(req, res, next) {
+	console.log(req.session.views);
+	console.log('you viewed this page ' + req.session.views['/auth/login.do'] + ' times');
 	var data = req.body;
 	console.log(data);
 	if(!(data.user_name && data.password)){
@@ -18,7 +21,8 @@ router.route('/login.do').post(function(req, res, next) {
 		}else{
 			res.json({
 				success:true,
-				message:"登录成功"
+				message:"登录成功",
+				data:docs
 			});
 		}
 		},function(err){

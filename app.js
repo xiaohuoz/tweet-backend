@@ -8,9 +8,24 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
-
+var parseurl = require('parseurl')
+var session = require('express-session');
 var app = express();
-
+app.use(session({
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: true
+}))
+app.use(function(req, res, next) {
+  var views = req.session.views
+  console.log('v',views);
+  if (!views) {
+    views = req.session.views = {}
+  }
+  var pathname = parseurl(req).pathname
+  views[pathname] = (views[pathname] || 0) + 1
+  next()
+});
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
