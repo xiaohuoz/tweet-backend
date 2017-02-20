@@ -1,8 +1,8 @@
 var DB = require('../lib/Dao').DB;
-var user = DB('user');
+var user = DB('tweet');
 
 function insert(){
-	user.insert({'user_name':'cz','password':'123456','name':'cz'},function success(){
+	user.insert({'time':new Date(),'content':'4567890','type':''},function success(){
 		console.log('insert success');
 	},function err(err){
 		throw err;

@@ -1,8 +1,8 @@
 var DB = require('../lib/Dao').DB;
-var user = DB('user');
+var user = DB('comment');
 
 function insert(){
-	user.insert({'user_name':'cz','password':'123456','name':'cz'},function success(){
+	user.insert({'BlogId':'1','content':'123456','name':'cz','time':new Date()},function success(){
 		console.log('insert success');
 	},function err(err){
 		throw err;
