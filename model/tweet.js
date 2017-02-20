@@ -1,5 +1,6 @@
 var DB = require('../lib/Dao').DB;
 var user = DB('tweet');
+var {ObjectId} = require('mongodb');
 
 function insert(){
 	user.insert({'time':new Date(),'content':'4567890','type':''},function success(){
@@ -9,7 +10,7 @@ function insert(){
 	});
 }
 function remove(){
-	user.remove({},function success(docs){
+	user.remove({'_id':ObjectId("58aa983f9edf6326808d0000")},function success(docs){
 		console.log(docs);
 	},function fail(err){
 		console.log(err);
@@ -22,5 +23,7 @@ function find(){
 		console.log(err);
 	});
 }
+// remove();
 // find();
-// insert();
+insert();
+// console.log(mongodb);
