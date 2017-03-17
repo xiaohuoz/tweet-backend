@@ -20,7 +20,6 @@ app.use(session({
 }))
 app.use(function(req, res, next) {
   var views = req.session.views
-  console.log('v',views);
   if (!views) {
     views = req.session.views = {}
   }

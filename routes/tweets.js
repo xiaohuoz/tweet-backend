@@ -19,13 +19,13 @@ router.route('/').all(function(req,res,next){
 }).post(function(req, res, next) {
 	res.json({success:true});
 }).put(function(req, res, next) {
-    tweet.insert({name:"1323"},function(docs){
-		res.json(docs);
+	const message = req.body.tweet
+    tweet.insert({'time':new Date(),'content':message,'type':''},function(docs){
+		res.json({'success':true,'data':docs});
 	},function(err){
 		throw err;
 	})
 }).delete(function(req, res, next) {
-	console.log(req.body)
 	tweet.remove({'_id': ObjectId(req.body._id)},function(docs){
 		res.json({'success':true,'data':docs});
 	})
