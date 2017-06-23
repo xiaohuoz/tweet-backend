@@ -9,6 +9,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var tweets = require('./routes/tweets');
+var blogs = require('./routes/blogs');
+var sse = require('./routes/sse');
 
 var parseurl = require('parseurl')
 var session = require('express-session');
@@ -43,6 +45,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/tweets', tweets);
+app.use('/blogs',blogs);
+app.use('/sse',sse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
